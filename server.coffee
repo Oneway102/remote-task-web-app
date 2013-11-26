@@ -8,11 +8,14 @@ logger = require("./lib/logger")
 api = require("./lib/api")
 dbmodule = require("./lib/module")
 param = require("./lib/param")
+routes = require("./app/routes")
 
 app = express()
 
 # all environments
 app.set "port", process.env.PORT or 3000
+app.set('views', "./app/views")
+app.engine('html', require('ejs').renderFile)
 app.enable('trust proxy')
 
 app.use express.logger(stream: {write: (msg, encode) -> logger.info(msg)})
@@ -79,6 +82,9 @@ app.post "/api/tags", api.auth.admin_auth, api.tags.add
 app.post "/api/users", api.auth.admin_auth, api.users.add
 app.get "/api/users", api.auth.admin_auth, api.users.list
 app.get "/api/users/:id", api.auth.admin_auth, api.users.get
+
+# redirect all others to the index (HTML5 history)
+app.get('*', routes.index);
 
 http.createServer(app).listen app.get("port"), ->
   console.log "Express server listening on port #{app.get('port')} in #{app.get('env')} mode."

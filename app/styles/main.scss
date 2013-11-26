@@ -30,3 +30,21 @@ body {
     line-height: 1;
     letter-spacing: -1px;
 }
+
+.p_job {
+    margin: 5px 1px 1px 1px;
+    border-bottom: 1px dashed #DDD;
+}
+
+/* Sub table */
+.subtable {
+    width: 100%;
+}
+.subtable td {
+    border-left: 0px;
+}
+
+/* Form */
+select.short {
+    width: 150px;
+}
