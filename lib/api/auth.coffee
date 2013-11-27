@@ -36,9 +36,9 @@ exports = module.exports =
               token = uuid.v1()
               user.setToken access_token: token, (err, t) ->
                 return next(err) if err?
-                res.json {access_token: t.access_token}
+                res.json {access_token: t.access_token, id: user.id}
             else
-              res.json {access_token: token.access_token}
+              res.json {access_token: token.access_token, id: user.id}
         else
           res.json 400, error: "Invalid username or password."
     else

@@ -14,7 +14,7 @@ app = express()
 
 # all environments
 app.set "port", process.env.PORT or 3000
-app.set('views', "./app/views")
+app.set('views', path.join(__dirname, "app/views"))
 app.engine('html', require('ejs').renderFile)
 app.enable('trust proxy')
 
@@ -22,7 +22,6 @@ app.use express.logger(stream: {write: (msg, encode) -> logger.info(msg)})
 app.use dbmodule.setup()
 app.use express.bodyParser()
 app.use express.methodOverride()
-app.use app.router
 
 # development only
 if "development" is app.get("env")
@@ -34,6 +33,8 @@ if "development" is app.get("env")
 else
   app.use express.favicon(path.join(__dirname, "public/favicon.ico"))
   app.use express.static(path.join(__dirname, "public"))
+
+app.use app.router
 
 app.use (err, req, res, next) ->
   if err?

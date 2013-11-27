@@ -1,9 +1,9 @@
-<p>There are {{tasks.length}} task(s).
+<p>There are {{dataset.tasks.length}} task(s).
 </p>
 
 <p>
-  <button class="btn btn-primary" ng-click="my_filter={creator_id:myId}">My Tasks</button>
-  <button class="btn btn-primary" ng-click="my_filter={}">All</button>
+  <button class="btn btn-primary" ng-click="taskFilter={creator_id:myId}">My Tasks</button>
+  <button class="btn btn-primary" ng-click="taskFilter={}">All</button>
 </p>
 
 <table class="table table-bordered table-hover">
@@ -16,7 +16,7 @@
       <th>Description</th>
     </tr>
   </thead>
-  <tbody ng-repeat='task in tasks | filter:my_filter'>
+  <tbody ng-repeat='task in dataset.tasks | filter:taskFilter'>
   <tr class="success">
     <td><a href="" ng-click="task.hidden = !task.hidden">{{task.name}}</a></td>
     <td>{{task.created_at | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
@@ -37,19 +37,6 @@
           <td>{{job.status}}</td>
         </tr>
       </table>
-
-      <!-- div id="t_row" class="p_job" ng-repeat="job in task.jobs">
-        <div id="t_left">No.</div>
-        <div id="t_left">Time</div>
-        <div id="t_left">Status</div>
-      </div>
-      <div id="t_container">
-        <div id="t_row" class="p_job" ng-repeat="job in task.jobs">
-          <div id="t_left">Job-{{job.no}}</div>
-          <div id="t_left">{{job.created_at}}</div>
-          <div id="t_left">{{job.status}}</div>
-        </div>
-      </div -->
   </tr>
   </tbody>
 </table>

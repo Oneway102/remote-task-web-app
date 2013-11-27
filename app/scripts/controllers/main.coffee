@@ -133,10 +133,10 @@ angular.module('angApp')
     return
 
   .controller 'TasksCtrl', ($scope, $http) ->
-    $scope.my_filter = {creator_id:gMY_ID} # default value for "my tasks";
+    $scope.taskFilter = {creator_id:gMY_ID} # default value for "my tasks";
     $scope.myId = gMY_ID
     $http.get("api/tasks?access_token=" + gMY_TOKEN).success (data) ->
-      $scope.tasks = data
+      $scope.dataset = data
     #$scope.isMyTask = (expected, task) ->
     #  return $scope.myId == task.creator.id
     $scope.getProductInfo = (job) ->
@@ -276,7 +276,7 @@ angular.module('angApp')
     $scope.selectDevice = ($event, _deviceIndex) ->
       el = $event.target
       if el.value is "anyDevice"
-        return device_filter.anyDevice
+        return $scope.device_filter.anyDevice # For test only
       index = $scope.selectedOptions.devices.indexOf(_deviceIndex)
       if el.checked is true
         # Seems no duplicated options for now.
@@ -322,6 +322,8 @@ angular.module('angApp')
               product:
                 manufacturer: device.product.manufacturer
                 model: m
+              tags:
+                "DummyTag"
           }
           job.no = iii++
           $scope.newTaskForm.jobs.push(job)
@@ -338,6 +340,8 @@ angular.module('angApp')
               product:
                 mac: tokens[0]
                 serial: tokens[1]
+              tags:
+                "DummyTag"
           job.no = i
           $scope.newTaskForm.jobs.push(job)
 
