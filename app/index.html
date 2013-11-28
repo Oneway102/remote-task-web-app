@@ -12,30 +12,9 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/bootstrap.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
-
-    <!-- native style -->
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-
-      @media (max-width: 980px) {
-        /* Enable use of floated navbar text */
-        .navbar-text.pull-right {
-          float: none;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-      }
-    </style>
-</head>
+  </head>
   <body ng-app="angApp" ng-controller="AppCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -47,7 +26,6 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -103,7 +81,6 @@
             <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
             <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
           </div>
-
           <div class="container123" ng-view="">
           </div>
         </div><!--/span-->
@@ -115,8 +92,6 @@
       </footer>
 
     </div><!--/.fluid-container-->
-
-    <!-- div class="container" ng-view=""></div -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -131,7 +106,6 @@
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <!-- script src="bower_components/underscore/underscore-min.js"></script -->
 
         <!-- build:js scripts/plugins.js -->
         <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>

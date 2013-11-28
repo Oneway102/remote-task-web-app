@@ -14,7 +14,7 @@ app = express()
 
 # all environments
 app.set "port", process.env.PORT or 3000
-app.set('views', path.join(__dirname, "app/views"))
+app.set('views', path.join(__dirname, "app"))
 app.engine('html', require('ejs').renderFile)
 app.enable('trust proxy')
 
