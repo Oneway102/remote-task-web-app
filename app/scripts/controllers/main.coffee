@@ -49,7 +49,7 @@ angular.module('angApp')
 
   .controller 'AppCtrl', ($scope, $http, $location) ->
     $scope.isLogin = () ->
-      return if gMY_TOKEN? and gMY_NAME? and gMY_ID? then true else false
+      return (gMY_TOKEN?.length > 0 and gMY_NAME?.length > 0 and gMY_ID?)
     $scope.getUserName = () ->
       return gMY_NAME
     $scope.logout = () ->
@@ -115,7 +115,7 @@ angular.module('angApp')
           $scope.showMessage = true
       return
     $scope.showLogin = () ->
-      return not gMY_TOKEN? or not gMY_NAME?
+      return not (gMY_TOKEN?.length > 0 and gMY_NAME?.length > 0)
     return
 
   .controller 'WksCtrl', ($scope, $http) ->
