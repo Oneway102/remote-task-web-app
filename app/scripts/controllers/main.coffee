@@ -119,7 +119,7 @@ angular.module('angApp')
     return
 
   .controller 'WksCtrl', ($scope, $http) ->
-    $http.get('api/workstations').success (data) ->
+    $http.get('api/workstations?access_token=' + gMY_TOKEN).success (data) ->
       $scope.zks = data
     return
 
