@@ -47,7 +47,8 @@ angular.module('angApp')
     $http.get('/api/awesomeThings').success (awesomeThings) ->
       $scope.awesomeThings = awesomeThings
 
-  .controller 'AppCtrl', ($scope, $http, $location) ->
+  # $route must be declared here so that the app can listen on the first $routeChangeSuccess event when user press enter on the URL bar.
+  .controller 'AppCtrl', ($scope, $http, $location, $rootScope, $route) ->
     $scope.isLogin = () ->
       return (gMY_TOKEN?.length > 0 and gMY_NAME?.length > 0 and gMY_ID?)
     $scope.getUserName = () ->
@@ -346,7 +347,7 @@ angular.module('angApp')
           $scope.newTaskForm.jobs.push(job)
 
       $http.post("api/tasks?access_token=" + gMY_TOKEN, $scope.newTaskForm).success (data) ->
-        $location.path "/jobs"
+        $location.path "/tasks"
         return;
       return
     return
