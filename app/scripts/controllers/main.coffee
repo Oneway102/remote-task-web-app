@@ -64,9 +64,6 @@ angular.module('angApp')
     $scope.showMessage = false
     $scope.promptMessage = ""
 
-    #gMY_TOKEN = getCookie("smart_token")
-    #gMY_NAME = getCookie("smart_name")
-
     $scope.login = () ->
       return if not $scope.loginForm.email? or not $scope.loginForm.password?
       # Get token indeed
@@ -75,13 +72,10 @@ angular.module('angApp')
         password: $scope.loginForm.password
       $http.post("api/auth/get_access_token", data)
         .success (data) ->
-          # b054 - 9dd8a600-4d15-11e3-bfb6-cfebdcc7445f
-          console.log "Token: " + data.access_token
           gMY_TOKEN = data.access_token
           gMY_ID = data.id
           gMY_NAME = $scope.loginForm.email
           setAuthCookie(gMY_ID, gMY_NAME, gMY_TOKEN)
-          #$cookie.smart_token = data.access_token
           $scope.showMessage = true
           $scope.promptMessage = "Done: " + data.access_token
         .error (data, status, headers, config) ->
@@ -324,7 +318,7 @@ angular.module('angApp')
                 manufacturer: device.product.manufacturer
                 model: m
               tags:
-                "DummyTag"
+                "system:role:guest"
           }
           job.no = iii++
           $scope.newTaskForm.jobs.push(job)
@@ -338,11 +332,10 @@ angular.module('angApp')
             r_type: $scope.newTaskForm.r_type
             device_filter:
               platform: device.platform
-              product:
-                mac: tokens[0]
-                serial: tokens[1]
+              mac: tokens[0]
+              serial: tokens[1]
               tags:
-                "DummyTag"
+                "system:role:guest"
           job.no = i
           $scope.newTaskForm.jobs.push(job)
 
