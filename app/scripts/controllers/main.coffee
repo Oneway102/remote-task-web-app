@@ -90,8 +90,6 @@ angular.module('angApp')
             password: $scope.loginForm.password
           $http.post("api/auth/get_access_token", data)
             .success (data) ->
-              # b054 - 9dd8a600-4d15-11e3-bfb6-cfebdcc7445f
-              console.log "Token: " + data.access_token
               gMY_TOKEN = data.access_token
               gMY_ID = data.id
               gMY_NAME = $scope.loginForm.email
