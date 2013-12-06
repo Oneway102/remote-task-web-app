@@ -8,6 +8,10 @@
               <li><a href="javascript:void(0)" ng-click="addtask3()">Create task 3</a></li>
             </ul>
 
+		  <div class="control-group">
+		    <button class='btn btn-primary' ng-click="activeFilter=true">Active</button>
+		    <button class='btn btn-primary' ng-click="activeFilter=false">Finished</button>
+		  </div>
 			<table class="table table-bordered table-hover">
 			  <thead>
 			    <tr>
@@ -18,7 +22,7 @@
 			      <th>Description</th>
 			    </tr>
 			  </thead>
-			  <tbody ng-repeat='task in dataset.tasks'>
+			  <tbody ng-repeat='task in dataset.tasks | filter:statusFilter'>
 			  <tr class="success">
 			    <td><a href="javascript:void(0)" ng-click="task.hidden = !task.hidden">{{task.name}}</a></td>
 			    <td>{{task.created_at | date: 'yyyy-MM-dd HH:mm:ss'}}</td>

@@ -155,9 +155,22 @@ angular.module('angApp')
         $scope.group_users.push email : $scope.user_mail
         return
       return
+    $scope.statusFilter = (task) ->
+      return (task._active is $scope.activeFilter)
+    initData = (data) ->
+      for t in data.tasks
+        active = false
+        for j in t.jobs
+          if j.status is "started" or j.status is "new"
+            active = true
+            break
+        t._active = active
+      return
+    $scope.activeFilter = true
     id = $scope.pid = $routeParams.id or ""
     $http.get("api/tasks?project="+id+"&access_token=" + gMY_TOKEN).success (data) ->
       $scope.dataset = data
+      initData($scope.dataset)
       return
     $http.get("api/projects/"+id+"?access_token=" + gMY_TOKEN).success (data) ->
       $scope.group_users = data.users
@@ -555,6 +568,7 @@ angular.module('angApp')
 
   .controller 'AddTaskCtrl2', ($routeParams, $scope, $http, $location) ->
     # Some initialization.
+    $scope.deviceFilter = false
     $scope.newTaskForm = {}
     $scope.newTaskForm.jobs = []
     $scope.id = $routeParams.id
